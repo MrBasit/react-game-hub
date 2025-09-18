@@ -1,3 +1,4 @@
+import type { QueryObject } from "../components/App";
 import useData from "./useData";
 import type { Genre } from "./useGeners";
 
@@ -15,8 +16,8 @@ export interface Game {
   metacritic: number
 }
 
-function useGames(selectedGenre: Genre | null) {
-  return useData<Game>('/games', [selectedGenre], { params: { genres: selectedGenre?.id } });
+function useGames(query: QueryObject) {
+  return useData<Game>('/games', [query], { params: { genres: query?.Genre?.id, parent_platforms: query?.Platform?.id } });
 }
 
 export default useGames;

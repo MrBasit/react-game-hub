@@ -4,12 +4,14 @@ import {
   FaGlobe,
   FaLinux,
   FaPlaystation,
+  FaQuestion,
   FaWindows,
   FaXbox,
 } from "react-icons/fa";
 import type { Platform } from "../hooks/useGames";
 import { BsApple, BsNintendoSwitch } from "react-icons/bs";
 import { HStack } from "@chakra-ui/react";
+import { Tooltip } from "../components/ui/tooltip";
 
 interface Prop {
   platforms: {
@@ -40,7 +42,9 @@ export default function PlatformIcons({ platforms }: Prop) {
         ) : platform.slug == "ios" ? (
           <FaAppStore size={24} key={platform.slug} color="gray" />
         ) : (
-          <span>{platform.slug}</span>
+          <Tooltip content={platform.slug}>
+            <FaQuestion size={24} key={platform.slug} color="gray" />
+          </Tooltip>
         )
       )}
     </HStack>

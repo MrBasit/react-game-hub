@@ -1,14 +1,18 @@
-import { Image, List, Spinner, Text } from "@chakra-ui/react";
+import { Image, Link, List, Spinner } from "@chakra-ui/react";
 import useGeners, { type Genre } from "../hooks/useGeners";
 import { GetOptimizedImageUrl } from "../services/optimized-images.service";
+import type { QueryObject } from "./App";
 
 interface Prop {
   onGenreClick: (genre: Genre) => void;
+  query: QueryObject | null;
 }
-export default function GenresList({ onGenreClick }: Prop) {
-  let { data, isLoading } = useGeners();
+export default function GenresList({ onGenreClick, query }: Prop) {
+  let { data, error, isLoading } = useGeners();
   return (
     <>
+      {error && null}
+
       {isLoading && <Spinner></Spinner>}
 
       <List.Root gap="2" variant="plain" align="center">
@@ -22,7 +26,15 @@ export default function GenresList({ onGenreClick }: Prop) {
                 borderRadius={"10px"}
                 marginRight={"8px"}
               ></Image>
-              <Text fontSize={"20px"}>{genre.name}</Text>
+              <Link
+                fontWeight={genre.id == query?.Genre?.id ? "bolder" : "normal"}
+                backgroundColor={genre.id == query?.Genre?.id ? "gray.800" : ""}
+                padding={"4px"}
+                variant="plain"
+                fontSize={"20px"}
+              >
+                {genre.name}
+              </Link>
             </List.Item>
           );
         })}

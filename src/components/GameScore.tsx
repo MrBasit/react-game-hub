@@ -7,9 +7,11 @@ export default function GameScore({ score }: Prop) {
   const color = score > 90 ? "green" : score > 85 ? "yellow" : "red";
   return (
     <div>
-      <Badge fontSize={"16px"} paddingX={2} colorPalette={color}>
-        {score}
-      </Badge>
+      {score && (
+        <Badge fontSize={"16px"} paddingX={2} colorPalette={color}>
+          {score}
+        </Badge>
+      )}
     </div>
   );
 }

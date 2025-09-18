@@ -4,8 +4,14 @@ import GenresList from "./GenresList";
 import GameGrid from "./GameGrid";
 import { useState } from "react";
 import type { Genre } from "../hooks/useGeners";
+import PlatformSelector from "./PlatformSelector";
+import { type Platform } from "../hooks/useGames";
+export interface QueryObject {
+  Genre: Genre | null;
+  Platform: Platform | null;
+}
 function App() {
-  let [selectedGenre, SetSelectedGenre] = useState<Genre | null>(null);
+  let [queryObject, setQuery] = useState<QueryObject>({} as QueryObject);
   return (
     <>
       <Grid
@@ -24,11 +30,20 @@ function App() {
         </GridItem>
         <GridItem hideBelow={"lg"} area={"aside"} padding={"8px 16px"}>
           <GenresList
-            onGenreClick={(genre: Genre) => SetSelectedGenre(genre)}
+            onGenreClick={(genre: Genre) =>
+              setQuery({ ...queryObject, Genre: genre })
+            }
+            query={queryObject}
           ></GenresList>
         </GridItem>
         <GridItem area={"main"} padding={"16px"}>
-          <GameGrid selectedGenre={selectedGenre}></GameGrid>
+          <PlatformSelector
+            query={queryObject}
+            onPlatformSelection={(platform: Platform) =>
+              setQuery({ ...queryObject, Platform: platform })
+            }
+          ></PlatformSelector>
+          <GameGrid query={queryObject}></GameGrid>
         </GridItem>
       </Grid>
     </>

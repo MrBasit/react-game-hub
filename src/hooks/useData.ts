@@ -12,7 +12,6 @@ function useData<T>(endpoint: string, deps?: any[], requestConfig?: AxiosRequest
   let [error, setError] = useState<string>("");
   let [isLoading, setLoading] = useState(false);
 
-  console.log(endpoint, deps, requestConfig)
 
   useEffect(() => {
     setLoading(true);
@@ -21,7 +20,6 @@ function useData<T>(endpoint: string, deps?: any[], requestConfig?: AxiosRequest
       .get<DataResponse<T>>(endpoint, { signal: controller.signal, ...requestConfig })
       .then((response) => {
         setLoading(false);
-        console.log("response -> ", response);
         setData(response.data.results);
       })
       .catch((e) => {
