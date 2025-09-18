@@ -8,8 +8,8 @@ import {
   FaXbox,
 } from "react-icons/fa";
 import type { Platform } from "../hooks/useGames";
-import { BsApple } from "react-icons/bs";
-import { SiNintendo } from "react-icons/si";
+import { BsApple, BsNintendoSwitch } from "react-icons/bs";
+import { HStack } from "@chakra-ui/react";
 
 interface Prop {
   platforms: {
@@ -19,30 +19,30 @@ interface Prop {
 
 export default function PlatformIcons({ platforms }: Prop) {
   return (
-    <>
+    <HStack>
       {platforms.map(({ platform }) =>
         platform.slug == "pc" ? (
-          <FaWindows color="gray" />
+          <FaWindows size={24} key={platform.slug} color="gray" />
         ) : platform.slug == "xbox" ? (
-          <FaXbox color="gray" />
+          <FaXbox size={24} key={platform.slug} color="gray" />
         ) : platform.slug == "mac" ? (
-          <BsApple color="gray" />
+          <BsApple size={24} key={platform.slug} color="gray" />
         ) : platform.slug == "linux" ? (
-          <FaLinux color="gray" />
+          <FaLinux size={24} key={platform.slug} color="gray" />
         ) : platform.slug == "playstation" ? (
-          <FaPlaystation color="gray" />
+          <FaPlaystation size={24} key={platform.slug} color="gray" />
         ) : platform.slug == "android" ? (
-          <FaAndroid color="gray" />
+          <FaAndroid size={24} key={platform.slug} color="gray" />
         ) : platform.slug == "nintendo" ? (
-          <SiNintendo color="gray" />
+          <BsNintendoSwitch size={24} key={platform.slug} color="gray" />
         ) : platform.slug == "web" ? (
-          <FaGlobe color="gray" />
+          <FaGlobe size={24} key={platform.slug} color="gray" />
         ) : platform.slug == "ios" ? (
-          <FaAppStore color="gray" />
+          <FaAppStore size={24} key={platform.slug} color="gray" />
         ) : (
           <span>{platform.slug}</span>
         )
       )}
-    </>
+    </HStack>
   );
 }
