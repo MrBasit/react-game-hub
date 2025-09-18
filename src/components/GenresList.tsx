@@ -1,25 +1,28 @@
 import { Image, List, Spinner, Text } from "@chakra-ui/react";
-import useGeners from "../hooks/useGeners";
+import useGeners, { type Genre } from "../hooks/useGeners";
 import { GetOptimizedImageUrl } from "../services/optimized-images.service";
 
-export default function GenresList() {
+interface Prop {
+  onGenreClick: (genre: Genre) => void;
+}
+export default function GenresList({ onGenreClick }: Prop) {
   let { data, isLoading } = useGeners();
   return (
     <>
       {isLoading && <Spinner></Spinner>}
 
       <List.Root gap="2" variant="plain" align="center">
-        {data.map((d) => {
+        {data.map((genre) => {
           return (
-            <List.Item key={d.id}>
+            <List.Item key={genre.id} onClick={() => onGenreClick(genre)}>
               <Image
-                src={GetOptimizedImageUrl(d.image_background)}
+                src={GetOptimizedImageUrl(genre.image_background)}
                 width={"50px"}
                 height={"50px"}
                 borderRadius={"10px"}
                 marginRight={"8px"}
               ></Image>
-              <Text fontSize={"20px"}>{d.name}</Text>
+              <Text fontSize={"20px"}>{genre.name}</Text>
             </List.Item>
           );
         })}

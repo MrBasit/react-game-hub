@@ -1,4 +1,4 @@
-import { CanceledError } from "axios";
+import { CanceledError, type AxiosRequestConfig } from "axios";
 import { useEffect, useState } from "react";
 import apiClient from '../services/api-client.service'
 
@@ -7,16 +7,18 @@ export interface DataResponse<T> {
   results: T[];
 }
 
-function useData<T>(endpoint: string) {
+function useData<T>(endpoint: string, deps?: any[], requestConfig?: AxiosRequestConfig) {
   let [data, setData] = useState<T[]>([]);
   let [error, setError] = useState<string>("");
   let [isLoading, setLoading] = useState(false);
+
+  console.log(endpoint, deps, requestConfig)
 
   useEffect(() => {
     setLoading(true);
     let controller = new AbortController();
     apiClient
-      .get<DataResponse<T>>(endpoint, { signal: controller.signal })
+      .get<DataResponse<T>>(endpoint, { signal: controller.signal, ...requestConfig })
       .then((response) => {
         setLoading(false);
         console.log("response -> ", response);
@@ -29,7 +31,7 @@ function useData<T>(endpoint: string) {
       });
 
     return () => controller.abort();
-  }, []);
+  }, deps ? deps : []);
 
   return { data, error, isLoading };
 }
