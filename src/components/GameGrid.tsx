@@ -1,9 +1,9 @@
 import { Text, SimpleGrid } from "@chakra-ui/react";
-import useGames, { type Platform } from "../hooks/useGames";
+import useGames from "../hooks/useGames";
 import GameCard from "./GameCard";
 import GameCardSkeleton from "./GameCardSkeleton";
-import type { Genre } from "../hooks/useGeners";
 import type { QueryObject } from "./App";
+import DynamicHeading from "./DynamicHeading";
 
 interface Prop {
   query: QueryObject;
@@ -15,6 +15,7 @@ function GameGrid({ query }: Prop) {
   return (
     <>
       {error && <Text>{error}</Text>}
+      {!error && <DynamicHeading query={query}></DynamicHeading>}
       <SimpleGrid columns={{ sm: 1, md: 2, lg: 2, xl: 3 }} gap="16px">
         {isLoading &&
           skeleton.map((s) => {

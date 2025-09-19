@@ -28,7 +28,6 @@ export default function GenresList({ onGenreClick, query }: Prop) {
               ></Image>
               <Link
                 fontWeight={genre.id == query?.Genre?.id ? "bolder" : "normal"}
-                backgroundColor={genre.id == query?.Genre?.id ? "gray.800" : ""}
                 padding={"4px"}
                 variant="plain"
                 fontSize={"20px"}
