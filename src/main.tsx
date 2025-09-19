@@ -7,7 +7,6 @@ import {
   ChakraProvider,
   createSystem,
   defaultConfig,
-  defaultSystem,
   defineConfig,
 } from "@chakra-ui/react";
 

@@ -1,5 +1,5 @@
 import useData from "./useData";
-import platforms from "../data/Platforms";
+// import platforms from "../data/Platforms";
 
 interface Platform {
   id: number,

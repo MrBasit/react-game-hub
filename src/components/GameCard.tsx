@@ -1,9 +1,8 @@
-import { Box, Card, Flex, HStack, Image } from "@chakra-ui/react";
+import { Box, Card, Flex, Image } from "@chakra-ui/react";
 import type { Game } from "../hooks/useGames";
 import PlatformIcons from "./PlatformIcons";
 import GameScore from "./GameScore";
 import { GetOptimizedImageUrl } from "../services/optimized-images.service";
-import { FaStar } from "react-icons/fa";
 import { IoStar, IoStarOutline } from "react-icons/io5";
 
 interface Prop {
