@@ -16,7 +16,7 @@ export default function GenresList({ onGenreClick, query }: Prop) {
       {isLoading && <Spinner></Spinner>}
 
       <List.Root gap="2" variant="plain" align="center">
-        {data.map((genre) => {
+        {data?.results.map((genre) => {
           return (
             <List.Item key={genre.id} onClick={() => onGenreClick(genre)}>
               <Image

@@ -14,14 +14,14 @@ function GameGrid({ query }: Prop) {
   const skeleton = [1, 2, 3, 4, 5, 6, 7, 8];
   return (
     <>
-      {error && <Text>{error}</Text>}
+      {error && <Text>{error.message}</Text>}
       {!error && <DynamicHeading query={query}></DynamicHeading>}
       <SimpleGrid columns={{ sm: 1, md: 2, lg: 2, xl: 3 }} gap="16px">
         {isLoading &&
           skeleton.map((s) => {
             return <GameCardSkeleton key={s} />;
           })}
-        {data.map((g) => {
+        {data?.results.map((g) => {
           return <GameCard key={g.id} game={g}></GameCard>;
         })}
       </SimpleGrid>

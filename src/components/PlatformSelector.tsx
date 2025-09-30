@@ -32,7 +32,7 @@ export default function PlatformSelector({ onPlatformSelection, query }: Prop) {
           <Portal>
             <Menu.Positioner>
               <Menu.Content>
-                {data.map((platform) => {
+                {data?.results.map((platform) => {
                   return (
                     <Menu.Item
                       onClick={() => onPlatformSelection(platform)}

@@ -12,7 +12,6 @@ function useData<T>(endpoint: string, deps?: any[], requestConfig?: AxiosRequest
   let [error, setError] = useState<string>("");
   let [isLoading, setLoading] = useState(false);
 
-
   useEffect(() => {
     setLoading(true);
     let controller = new AbortController();
