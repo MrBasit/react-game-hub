@@ -21,11 +21,11 @@ export default function GameCard({ game }: Prop) {
         </Flex>
         <Box marginY={"8px"}>
           <Flex>
-            {Array.from({ length: game.rating_top }, () => (
-              <IoStar></IoStar>
+            {Array.from({ length: game.rating_top }, (a, index) => (
+              <IoStar key={index}></IoStar>
             ))}
-            {Array.from({ length: 5 - game.rating_top }, () => (
-              <IoStarOutline></IoStarOutline>
+            {Array.from({ length: 5 - game.rating_top }, (a, index) => (
+              <IoStarOutline key={index}></IoStarOutline>
             ))}
           </Flex>
         </Box>

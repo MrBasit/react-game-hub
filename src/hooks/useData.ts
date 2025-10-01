@@ -4,6 +4,7 @@ import apiClient from '../services/api-client.service'
 
 export interface DataResponse<T> {
   count: number;
+  next: string | null;
   results: T[];
 }
 
@@ -15,17 +16,17 @@ function useData<T>(endpoint: string, deps?: any[], requestConfig?: AxiosRequest
   useEffect(() => {
     setLoading(true);
     let controller = new AbortController();
-    apiClient
-      .get<DataResponse<T>>(endpoint, { signal: controller.signal, ...requestConfig })
-      .then((response) => {
-        setLoading(false);
-        setData(response.data.results);
-      })
-      .catch((e) => {
-        if (e instanceof CanceledError) return;
-        setLoading(false);
-        setError(e.message);
-      });
+    // apiClient
+    //   .get<DataResponse<T>>(endpoint, { signal: controller.signal, ...requestConfig })
+    //   .then((response) => {
+    //     setLoading(false);
+    //     setData(response.data.results);
+    //   })
+    //   .catch((e) => {
+    //     if (e instanceof CanceledError) return;
+    //     setLoading(false);
+    //     setError(e.message);
+    //   });
 
     return () => controller.abort();
   }, deps ? deps : []);
