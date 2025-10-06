@@ -24,7 +24,6 @@ function GameGrid({ query }: Prop) {
   let dataLength =
     data?.pages.reduce((acc, page) => (acc = acc + page.results.length), 0) ||
     0;
-  console.log(dataLength);
   return (
     <>
       {error && <Text>{error.message}</Text>}

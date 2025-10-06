@@ -24,8 +24,8 @@ function useGames(query: QueryObject) {
     queryKey: ['games', query],
     queryFn: ({ pageParam = 0 }) => apiClient.getAll({
       params: {
-        genres: query?.Genre?.id,
-        parent_platforms: query?.Platform?.id,
+        genres: query?.GenreId,
+        parent_platforms: query?.PlatformId,
         ordering: query?.Sort?.value,
         search: query.SearchText,
         page_size: 10,

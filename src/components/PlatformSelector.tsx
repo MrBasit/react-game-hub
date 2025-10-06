@@ -25,7 +25,7 @@ export default function PlatformSelector({ onPlatformSelection, query }: Prop) {
         <Menu.Root>
           <Menu.Trigger asChild>
             <Button marginBottom={"8px"} variant="surface" size="sm">
-              {query?.Platform?.name || "Platform"}{" "}
+              {query?.PlatformId?.name || "Platform"}{" "}
               <FaChevronDown></FaChevronDown>
             </Button>
           </Menu.Trigger>

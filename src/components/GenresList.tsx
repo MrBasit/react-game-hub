@@ -27,7 +27,7 @@ export default function GenresList({ onGenreClick, query }: Prop) {
                 marginRight={"8px"}
               ></Image>
               <Link
-                fontWeight={genre.id == query?.Genre?.id ? "bolder" : "normal"}
+                fontWeight={genre.id == query?.GenreId ? "bolder" : "normal"}
                 padding={"4px"}
                 variant="plain"
                 fontSize={"20px"}

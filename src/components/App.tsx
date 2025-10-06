@@ -9,8 +9,8 @@ import { type Platform } from "../hooks/useGames";
 import SortSelector, { type SortItem } from "./SortSelector";
 
 export interface QueryObject {
-  Genre: Genre | null;
-  Platform: Platform | null;
+  GenreId?: number;
+  PlatformId?: number;
   Sort: SortItem | null;
   SearchText: String;
 }
@@ -39,7 +39,7 @@ function App() {
         <GridItem hideBelow={"lg"} area={"aside"} padding={"8px 16px"}>
           <GenresList
             onGenreClick={(genre: Genre) =>
-              setQuery({ ...queryObject, Genre: genre })
+              setQuery({ ...queryObject, GenreId: genre.id })
             }
             query={queryObject}
           ></GenresList>
@@ -50,7 +50,7 @@ function App() {
               <PlatformSelector
                 query={queryObject}
                 onPlatformSelection={(platform: Platform) =>
-                  setQuery({ ...queryObject, Platform: platform })
+                  setQuery({ ...queryObject, PlatformId: platform.id })
                 }
               ></PlatformSelector>
             </Box>
