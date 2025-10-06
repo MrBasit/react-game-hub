@@ -1,21 +1,11 @@
 import { Box, Flex, Grid, GridItem } from "@chakra-ui/react";
 import AppHeader from "./app-header";
-import GenresList from "./GenresList";
 import GameGrid from "./GameGrid";
-import { useState } from "react";
-import type { Genre } from "../hooks/useGeners";
+import GenresList from "./GenresList";
 import PlatformSelector from "./PlatformSelector";
-import { type Platform } from "../hooks/useGames";
-import SortSelector, { type SortItem } from "./SortSelector";
+import SortSelector from "./SortSelector";
 
-export interface QueryObject {
-  GenreId?: number;
-  PlatformId?: number;
-  Sort: SortItem | null;
-  SearchText: String;
-}
 function App() {
-  let [queryObject, setQuery] = useState<QueryObject>({} as QueryObject);
   return (
     <>
       <Grid
@@ -30,39 +20,19 @@ function App() {
         gap={1}
       >
         <GridItem area={"nav"}>
-          <AppHeader
-            onSearchChange={(searchText) =>
-              setQuery({ ...queryObject, SearchText: searchText })
-            }
-          />
+          <AppHeader />
         </GridItem>
         <GridItem hideBelow={"lg"} area={"aside"} padding={"8px 16px"}>
-          <GenresList
-            onGenreClick={(genre: Genre) =>
-              setQuery({ ...queryObject, GenreId: genre.id })
-            }
-            query={queryObject}
-          ></GenresList>
+          <GenresList></GenresList>
         </GridItem>
         <GridItem area={"main"} padding={"16px"}>
           <Flex>
             <Box marginRight={"16px"}>
-              <PlatformSelector
-                query={queryObject}
-                onPlatformSelection={(platform: Platform) =>
-                  setQuery({ ...queryObject, PlatformId: platform.id })
-                }
-              ></PlatformSelector>
+              <PlatformSelector></PlatformSelector>
             </Box>
-
-            <SortSelector
-              onSortSelection={(sortItem: SortItem) =>
-                setQuery({ ...queryObject, Sort: sortItem })
-              }
-              selectedSort={queryObject.Sort}
-            ></SortSelector>
+            <SortSelector></SortSelector>
           </Flex>
-          <GameGrid query={queryObject}></GameGrid>
+          <GameGrid></GameGrid>
         </GridItem>
       </Grid>
     </>

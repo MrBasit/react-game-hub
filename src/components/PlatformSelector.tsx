@@ -1,16 +1,13 @@
 import { Button, Menu, Portal, Skeleton } from "@chakra-ui/react";
-import usePlatform from "../hooks/usePlatform";
 import { FaChevronDown } from "react-icons/fa";
-import type { Platform } from "../hooks/useGames";
-import type { QueryObject } from "./App";
+import usePlatform from "../hooks/usePlatform";
+import queryStore from "../stores/queryStore";
 
-interface Prop {
-  onPlatformSelection: (platform: Platform) => void;
-  query: QueryObject | null;
-}
-
-export default function PlatformSelector({ onPlatformSelection, query }: Prop) {
+export default function PlatformSelector() {
   let { data, error, isLoading } = usePlatform();
+  let queryPlatformId = queryStore((s) => s.PlatformId);
+  let updateQueryPlatform = queryStore((s) => s.updatePlatform);
+  let { data: platforms } = usePlatform();
   return (
     <>
       {error && null}
@@ -25,7 +22,8 @@ export default function PlatformSelector({ onPlatformSelection, query }: Prop) {
         <Menu.Root>
           <Menu.Trigger asChild>
             <Button marginBottom={"8px"} variant="surface" size="sm">
-              {query?.PlatformId?.name || "Platform"}{" "}
+              {platforms.results.find((r) => r.id == queryPlatformId)?.name ||
+                "Platform"}{" "}
               <FaChevronDown></FaChevronDown>
             </Button>
           </Menu.Trigger>
@@ -35,7 +33,7 @@ export default function PlatformSelector({ onPlatformSelection, query }: Prop) {
                 {data?.results.map((platform) => {
                   return (
                     <Menu.Item
-                      onClick={() => onPlatformSelection(platform)}
+                      onClick={() => updateQueryPlatform(platform.id)}
                       value={platform.name}
                       key={platform.id}
                     >

@@ -11,14 +11,12 @@ import { FaMoon, FaSearch, FaSun } from "react-icons/fa";
 import { useColorMode } from "./ui/color-mode";
 import logo from "./../assets/gaming-hub.png";
 import { useRef } from "react";
+import queryStore from "../stores/queryStore";
 
-interface Props {
-  onSearchChange: (searchText: string) => void;
-}
-
-function AppHeader({ onSearchChange }: Props) {
+function AppHeader() {
   let { colorMode, toggleColorMode } = useColorMode();
   let searchRef = useRef<HTMLInputElement>(null);
+  let updateQuerySearchText = queryStore((store) => store.updateSearch);
   return (
     <>
       <Box>
@@ -39,7 +37,9 @@ function AppHeader({ onSearchChange }: Props) {
               placeholder="Search Movies"
               ref={searchRef}
               onChange={() =>
-                onSearchChange(searchRef.current ? searchRef.current.value : "")
+                updateQuerySearchText(
+                  searchRef.current ? searchRef.current.value : ""
+                )
               }
             />
           </InputGroup>

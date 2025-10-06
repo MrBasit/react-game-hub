@@ -1,7 +1,6 @@
-import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
-import type { QueryObject } from "../components/App";
-import useData, { type DataResponse } from "./useData";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import APIClient from "../services/api-client.service";
+import type { QueryObject } from "../stores/queryStore";
 
 let apiClient = new APIClient<Game>('/games');
 export interface Platform {

@@ -1,17 +1,20 @@
-import { Text, SimpleGrid, Spinner } from "@chakra-ui/react";
-import useGames from "../hooks/useGames";
-import GameCard from "./GameCard";
-import GameCardSkeleton from "./GameCardSkeleton";
-import type { QueryObject } from "./App";
-import DynamicHeading from "./DynamicHeading";
+import { SimpleGrid, Spinner, Text } from "@chakra-ui/react";
 import React from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
+import useGames from "../hooks/useGames";
+import queryStore from "../stores/queryStore";
+import DynamicHeading from "./DynamicHeading";
+import GameCard from "./GameCard";
+import GameCardSkeleton from "./GameCardSkeleton";
 
-interface Prop {
-  query: QueryObject;
-}
-
-function GameGrid({ query }: Prop) {
+function GameGrid() {
+  let querystore = queryStore();
+  let query = {
+    GenreId: querystore.GenreId,
+    PlatformId: querystore.PlatformId,
+    Sort: querystore.Sort || null,
+    SearchText: querystore.SearchText || "",
+  };
   let {
     data,
     error,
@@ -27,7 +30,7 @@ function GameGrid({ query }: Prop) {
   return (
     <>
       {error && <Text>{error.message}</Text>}
-      {!error && <DynamicHeading query={query}></DynamicHeading>}
+      {!error && <DynamicHeading></DynamicHeading>}
       <InfiniteScroll
         dataLength={dataLength}
         loader={<Spinner></Spinner>}
