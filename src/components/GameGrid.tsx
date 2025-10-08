@@ -37,7 +37,11 @@ function GameGrid() {
         hasMore={hasNextPage}
         next={fetchNextPage}
       >
-        <SimpleGrid columns={{ sm: 1, md: 2, lg: 2, xl: 3 }} gap="16px">
+        <SimpleGrid
+          paddingY={1}
+          columns={{ sm: 1, md: 2, lg: 2, xl: 3 }}
+          gap="16px"
+        >
           {isLoading &&
             skeleton.map((s) => {
               return <GameCardSkeleton key={s} />;

@@ -15,7 +15,8 @@ export interface Game {
   background_image: string;
   parent_platforms: { platform: Platform }[];
   metacritic: number,
-  rating_top: number
+  rating_top: number,
+  slug: string
 }
 
 function useGames(query: QueryObject) {

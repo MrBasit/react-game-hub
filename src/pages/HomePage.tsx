@@ -1,17 +1,16 @@
-import { Box, Flex, Grid, GridItem } from "@chakra-ui/react";
-import AppHeader from "./app-header";
-import GameGrid from "./GameGrid";
-import GenresList from "./GenresList";
-import PlatformSelector from "./PlatformSelector";
-import SortSelector from "./SortSelector";
+import { Grid, GridItem, Flex, Box } from "@chakra-ui/react";
+import GameGrid from "../components/GameGrid";
+import GenresList from "../components/GenresList";
+import PlatformSelector from "../components/PlatformSelector";
+import SortSelector from "../components/SortSelector";
 
-function App() {
+let HomePage = () => {
   return (
     <>
       <Grid
         gridTemplateAreas={{
-          base: `"nav" "main"`,
-          lg: `"nav nav" "aside main"`,
+          base: `"main"`,
+          lg: `"aside main"`,
         }}
         gridTemplateColumns={{
           base: "1fr",
@@ -19,9 +18,6 @@ function App() {
         }}
         gap={1}
       >
-        <GridItem area={"nav"}>
-          <AppHeader />
-        </GridItem>
         <GridItem hideBelow={"lg"} area={"aside"} padding={"8px 16px"}>
           <GenresList></GenresList>
         </GridItem>
@@ -37,6 +33,6 @@ function App() {
       </Grid>
     </>
   );
-}
+};
 
-export default App;
+export default HomePage;
