@@ -1,5 +1,5 @@
 import { Box, Card, Flex, Image } from "@chakra-ui/react";
-import type { Game } from "../hooks/useGames";
+import type { Game } from "../entities/Game";
 import PlatformIcons from "./PlatformIcons";
 import GameScore from "./GameScore";
 import { GetOptimizedImageUrl } from "../services/optimized-images.service";

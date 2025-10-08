@@ -8,7 +8,7 @@ import {
   FaWindows,
   FaXbox,
 } from "react-icons/fa";
-import type { Platform } from "../hooks/useGames";
+import type { Platform } from "../entities/Platform";
 import { BsApple, BsNintendoSwitch } from "react-icons/bs";
 import { HStack } from "@chakra-ui/react";
 import { Tooltip } from "../components/ui/tooltip";

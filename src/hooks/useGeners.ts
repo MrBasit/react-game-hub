@@ -3,14 +3,9 @@ import { useQuery } from "@tanstack/react-query";
 import Genres from "../data/Genres";
 import APIClinet from "../services/api-client.service";
 import type { DataResponse } from "./useData";
+import type { Genre } from "../entities/Genre";
 
 let apiClient = new APIClinet<Genre>('/genre')
-export interface Genre {
-  id: number;
-  name: string;
-  image_background: string;
-}
-
 // let useGeners = () => useData<Genre>('/genres');
 // let useGeners = () => { return { data: Genres, error: '', isLoading: false } };
 
