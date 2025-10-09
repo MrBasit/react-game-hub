@@ -18,8 +18,9 @@ class APIClient<T> {
     return Axios.get<DataResponse<T>>(this.EndPoint, config).then(response => response.data);
   }
 
-  get = (id: string | number) => {
-    return Axios.get<T>(this.EndPoint + '/' + id).then(response => response.data);
+  get = (id?: string | number) => {
+    let callEndPoint = this.EndPoint + (id ? `/${id}` : '');
+    return Axios.get<T>(callEndPoint).then(response => response.data);
   }
 }
 

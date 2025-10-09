@@ -28,7 +28,6 @@ createRoot(document.getElementById("root")!).render(
     <Provider>
       <QueryClientProvider client={client}>
         <ChakraProvider value={CustomSystem}>
-          {/* <App /> */}
           <RouterProvider router={router}></RouterProvider>
         </ChakraProvider>
         <ReactQueryDevtools></ReactQueryDevtools>

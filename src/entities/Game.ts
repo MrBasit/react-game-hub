@@ -1,3 +1,4 @@
+import type { Genre } from "./Genre";
 import type { Platform } from "./Platform";
 
 
@@ -10,4 +11,6 @@ export interface Game {
   rating_top: number;
   slug: string;
   description_raw: string;
+  genres: Genre[];
+  tags: Genre[];
 }
